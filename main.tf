@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "snowflake" {
-  role  = "ACCOUNTADMIN"
+  role  = "SYSADMIN"
 }
 
 resource "snowflake_database" "db" {
@@ -17,7 +17,8 @@ resource "snowflake_database" "db" {
 
 resource "snowflake_warehouse" "warehouse" {
   name           = "TF_DEMO"
-  warehouse_size = "large"
-
+  warehouse_size = "small"
   auto_suspend = 60
+  enable_query_acceleration = false
+  query_acceleration_max_scale_factor = 0
 }
